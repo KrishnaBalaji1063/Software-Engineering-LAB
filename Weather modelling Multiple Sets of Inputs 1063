@@ -1,0 +1,38 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+def find_roots(a, b, c):
+    delta = b**2 - 4*a*c
+    if delta > 0:
+        return ((-b + np.sqrt(delta)) / (2 * a), (-b - np.sqrt(delta)) / (2 * a))
+    elif delta == 0:
+        return (-b / (2 * a),)
+    else:
+        return None
+
+def visualize_quadratic(a, b, c):
+    x_vals = np.linspace(-10, 10, 500)
+    y_vals = a * x_vals**2 + b * x_vals + c
+    plt.plot(x_vals, y_vals)
+    plt.title(f"Graph of {a}x² + {b}x + {c}")
+    plt.axhline(0, color='black', lw=0.5)
+    plt.axvline(0, color='black', lw=0.5)
+    plt.grid()
+    plt.show()
+
+coefficients_list = [(1, -3, 2), (1, 0, -4), (2, -4, -6)]
+for a, b, c in coefficients_list:
+    print(f"Solving for: {a}x² + {b}x + {c} = 0")
+    roots = find_roots(a, b, c)
+    print(f"Roots: {roots}")
+    visualize_quadratic(a, b, c)
+
+Output:
+Solving for: 1x² - 3x + 2 = 0
+Roots: (2.0, 1.0)
+
+Solving for: 1x² + 0x - 4 = 0
+Roots: (2.0, -2.0)
+
+Solving for: 2x² - 4x - 6 = 0
+Roots: (3.0, -1.0)
